@@ -1,0 +1,1 @@
+A simple velocity plugin to enable permissions for joining servers, for each server a player needs the server.xyz permission, xyz being the servers name.
