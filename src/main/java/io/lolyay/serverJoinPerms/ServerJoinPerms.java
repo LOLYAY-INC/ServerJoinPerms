@@ -25,5 +25,6 @@ public class ServerJoinPerms {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         proxy.getEventManager().register(this, new EventHandler());
+        logger.info("ServerJoinPerms has been enabled!");
     }
 }
