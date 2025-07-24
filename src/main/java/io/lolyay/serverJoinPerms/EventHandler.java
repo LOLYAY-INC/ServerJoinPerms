@@ -24,13 +24,22 @@ public class EventHandler {
 
     @Subscribe
     private void serverPreConnect(ServerPreConnectEvent event){
-        if(!event.getPlayer().hasPermission("server." + event.getPlayer().getCurrentServer().get().getServerInfo().getName()))
+        if(!event.getPlayer().hasPermission("server." + event.getOriginalServer().getServerInfo().getName()))
         {
-            event.getPlayer().disconnect(
+            event.getPlayer().sendMessage(
                     Component.text("You don't have permission to join this server!")
                             .color(NamedTextColor.DARK_RED)
                             .decorate(TextDecoration.BOLD)
             );
+
+            event.setResult(ServerPreConnectEvent.ServerResult.denied());
+            if(event.getPreviousServer() == null){
+                event.getPlayer().disconnect(
+                        Component.text("You don't have permission to join this server!")
+                                .color(NamedTextColor.DARK_RED)
+                                .decorate(TextDecoration.BOLD)
+                );
+            }
         }
     }
 }
